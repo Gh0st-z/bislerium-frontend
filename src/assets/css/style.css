@@ -91,7 +91,6 @@
   font-family: Material-Design-Iconic-Font;
   color: #8d908e;
   font-size: 22px;
-
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -169,4 +168,5 @@
 
 .loginlink{
   margin: 10px 0px 0px 230px;
+  color: #B6B6B6;
 }

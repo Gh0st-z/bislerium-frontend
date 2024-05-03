@@ -9,7 +9,7 @@ import '../../assets/css/style.css'
 function Login(){
   const [message, setMessage] = useState('');
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: '',
   });
 
@@ -28,7 +28,7 @@ function Login(){
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.username.trim() || !formData.password.trim()) {
+    if (!formData.email.trim() || !formData.password.trim()) {
       showToast('error', 'Please Fill In All The Fields.');
     }else{
       axios.post('http://localhost:5234/api/user/login', formData).then(response => {
