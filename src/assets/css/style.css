@@ -1,0 +1,172 @@
+.toast-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --------Login page css-------- */
+.login-main{
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  position: absolute;
+  align-content: center;
+  background-image: url('../images/bg-image.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;}
+  @media {
+
+  }
+
+.login-form{
+  height: 75vh;
+  width: 80vh;
+  border-radius: 20px;
+  margin-left: 420px;
+  background-color: rgba(67, 108, 216, 0.25);
+}
+
+.header-div{
+  position: relative;
+  text-align: center;
+  padding: 5px 0px 5px 5px;
+}
+
+.form-header{
+  color: #B6B6B6;
+}
+
+.wrap-input100 {
+  width: 70%;
+  margin: 15px;
+  position: relative;
+}
+
+.label-input100{
+  color: #B6B6B6;
+  margin-left: 25px;
+  margin-top: 17px;
+  text-align: left;
+  display: block;
+}
+
+.input100{
+  width: 450px;
+  border: none;
+  margin-left: 25px;
+  border-bottom: 2px solid #B6B6B6;
+  transition: border-color 0.3s;
+  outline: none;
+  line-height: 1.2;
+  display: block;
+  height: 60px;
+  background: transparent;
+  padding: 0 6px 0 45px;
+}
+
+.input100:focus {
+  border-color: #7EBBB0;
+}
+
+.input100:focus::placeholder {
+  color:transparent;
+}
+
+.focus-input100 {
+  position: absolute;
+  font-family: 'FontAwesome';
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  margin-left: 25px;
+  pointer-events: none;
+}
+
+.focus-input100::after {
+  content: attr(data-symbol);
+  font-family: Material-Design-Iconic-Font;
+  color: #8d908e;
+  font-size: 22px;
+
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  height: calc(100% - 20px);
+  bottom: 0;
+  left: 0;
+  padding-left: 13px;
+  padding-top: 3px;
+}
+
+.focus-input100::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  -webkit-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.input100:focus + .focus-input100::before {
+  width: 365px;
+}
+
+.has-val.input100 + .focus-input100::before {
+  width: 365px;
+}
+
+.input100:focus + .focus-input100::after {
+  color: #7EBBB0;
+}
+
+.has-val.input100 + .focus-input100::after {
+  color: #7EBBB0;
+}
+
+.for-pass{
+  text-align: right;
+  display: block;
+  margin: 20px 65px 20px;
+}
+
+.login-btn{
+  width: 200px;
+  height: 40px;
+  border-radius: 5px;
+  margin: 10px 0px 0px 170px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.login-btn:hover {
+  background-color: rgba(67, 108, 216, 0.25);
+  border: 2px solid #070807;
+  color: #ffffff;
+}
+
+.account{
+  text-align: center;
+  margin: 10px 0px 0px 205px;
+  font-size: 16px;
+}
+
+.loginlink{
+  margin: 10px 0px 0px 230px;
+}

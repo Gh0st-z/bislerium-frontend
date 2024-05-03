@@ -3,9 +3,10 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {ToastContainer, toast} from 'react-toastify';
 import Cookies from 'js-cookie';
+import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/css/style.css'
 
-funtion Login(){
+function Login(){
   const [message, setMessage] = useState('');
   const [formData, setFormData] = useState({
     username: '',
@@ -52,9 +53,29 @@ funtion Login(){
   return(
     <div className="login-main">
       <ToastContainer/>
-      <div className="login-div">
-        <form className="login-form" action="" method="POST" enctype="multipart/form-data" onSubmit={handleSubmit}>
-          <h1 className="form-title">Login</h1>
+      <div className="login-form">
+        <div className="header-div">
+          <h1 className="form-header">Login</h1>
+        </div>
+        <form key={formKey} action="" method="POST" onSubmit={handleSubmit}>
+          <div className="wrap-input100">
+            <span className="label-input100">Username/Email: </span>
+            <input className="input100" type="text" name="email" placeholder="Enter your username/email" onChange={handleInput}/>
+            <span className="focus-input100" data-symbol="&#x2709;"></span>
+          </div>
+          <div className="wrap-input100">
+            <span className="label-input100">Password: </span>
+            <input className="input100" type="password" name="password" placeholder="Enter your password" onChange={handleInput}/>
+            <span className="focus-input100" data-symbol="&#xf190;"></span>
+          </div>
+          <a href="#" className="for-pass">Forgot Password?</a>
+          <div className="wrap-input100">
+            <button className="login-btn">Login</button>
+          </div>
+          <span className="account">Don't have an account?</span><br/>
+          <nav>
+            <Link className="loginlink" to="/register"> Create an account</Link>
+          </nav>
         </form>
       </div>
     </div>
