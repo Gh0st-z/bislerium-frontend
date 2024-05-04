@@ -16,9 +16,9 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;}
-  @media {
-
-  }
+  @media screen and (max-width: 768px) {
+    .typed {
+      font-size: 25px !important; } }
 
 .login-form{
   height: 75vh;
