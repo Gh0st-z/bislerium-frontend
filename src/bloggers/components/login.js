@@ -9,8 +9,8 @@ import '../../assets/css/style.css'
 function Login(){
   const [message, setMessage] = useState('');
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    UsernameOrEmail: '',
+    Password: '',
   });
 
   const [formKey, setFormKey] = useState(0);
@@ -28,7 +28,7 @@ function Login(){
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.email.trim() || !formData.password.trim()) {
+    if (!formData.UsernameOrEmail.trim() || !formData.Password.trim()) {
       showToast('error', 'Please Fill In All The Fields.');
     }else{
       axios.post('http://localhost:5234/api/user/login', formData).then(response => {
@@ -60,12 +60,12 @@ function Login(){
         <form key={formKey} action="" method="POST" onSubmit={handleSubmit}>
           <div className="wrap-input100">
             <span className="label-input100">Username/Email: </span>
-            <input className="input100" type="text" name="email" placeholder="Enter your username/email" onChange={handleInput}/>
+            <input className="input100" type="text" name="UsernameOrEmail" placeholder="Enter your username/email" onChange={handleInput}/>
             <span className="focus-input100" data-symbol="&#x2709;"></span>
           </div>
           <div className="wrap-input100">
             <span className="label-input100">Password: </span>
-            <input className="input100" type="password" name="password" placeholder="Enter your password" onChange={handleInput}/>
+            <input className="input100" type="password" name="Password" placeholder="Enter your password" onChange={handleInput}/>
             <span className="focus-input100" data-symbol="&#xf190;"></span>
           </div>
           <a href="#" className="for-pass">Forgot Password?</a>
