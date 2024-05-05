@@ -3,6 +3,8 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {ToastContainer, toast} from 'react-toastify';
 import Cookies from 'js-cookie';
+import envelope from '../../assets/images/envelope.png';
+import padlock from '../../assets/images/padlock.png';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/css/style.css'
 
@@ -61,12 +63,12 @@ function Login(){
           <div className="wrap-input100">
             <span className="label-input100">Username/Email: </span>
             <input className="input100" type="text" name="UsernameOrEmail" placeholder="Enter your username/email" onChange={handleInput}/>
-            <span className="focus-input100" data-symbol="&#x2709;"></span>
+            <img src={envelope} className="focus-input100"/>
           </div>
           <div className="wrap-input100">
             <span className="label-input100">Password: </span>
             <input className="input100" type="password" name="Password" placeholder="Enter your password" onChange={handleInput}/>
-            <span className="focus-input100" data-symbol="&#xf190;"></span>
+            <img src={padlock} className="focus-input100"/>
           </div>
           <a href="#" className="for-pass">Forgot Password?</a>
           <div className="wrap-input100">

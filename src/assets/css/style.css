@@ -1,3 +1,10 @@
+body{
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+}
+
 .toast-container {
   width: 100%;
   display: flex;
@@ -7,29 +14,35 @@
 
 /* --------Login page css-------- */
 .login-main{
-  width: 100%;
-  height: 100vh;
-  max-height: 100vh;
-  position: absolute;
-  align-content: center;
+  width: auto;
+  height: auto;
+  min-height: 100vh;
+  max-height: 95vh;
+  min-width: 210vh;
+  max-width: 210vh;
+  overflow: hidden;
   background-image: url('../images/bg-image.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;}
   @media screen and (max-width: 768px) {
-    .typed {
+    .login-main {
       font-size: 25px !important; } }
 
 .login-form{
-  height: 75vh;
-  width: 80vh;
+  height: auto;
+  width: 90%;
+  min-height: 550px;
+  max-height: 550px;
+  max-width: 600px;
   border-radius: 20px;
-  margin-left: 420px;
+  margin-top: 13vh;
+  margin-left: 61vh;
+  overflow: hidden;
   background-color: rgba(67, 108, 216, 0.25);
 }
 
 .header-div{
-  position: relative;
   text-align: center;
   padding: 5px 0px 5px 5px;
 }
@@ -40,8 +53,7 @@
 
 .wrap-input100 {
   width: 70%;
-  margin: 15px;
-  position: relative;
+  margin: 20px;
 }
 
 .label-input100{
@@ -67,7 +79,7 @@
 }
 
 .input100:focus {
-  border-color: #7EBBB0;
+  border-color: #0f4fb8;
 }
 
 .input100:focus::placeholder {
@@ -75,13 +87,13 @@
 }
 
 .focus-input100 {
-  position: absolute;
-  font-family: 'FontAwesome';
+  color: #ffffff;
+  position: relative;
   display: block;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
+  width: 5%;
+  height: 20px;
+  top: -40px;
+  left: 10px;
   margin-left: 25px;
   pointer-events: none;
 }
@@ -138,8 +150,13 @@
 
 .for-pass{
   text-align: right;
+  color: #B6B6B6;
   display: block;
   margin: 20px 65px 20px;
+}
+
+.for-pass:hover{
+  color: #0f4fb8;
 }
 
 .login-btn{
@@ -162,6 +179,7 @@
 
 .account{
   text-align: center;
+  color: #B6B6B6;
   margin: 10px 0px 0px 205px;
   font-size: 16px;
 }
@@ -169,4 +187,7 @@
 .loginlink{
   margin: 10px 0px 0px 230px;
   color: #B6B6B6;
+}
+.loginlink:hover{
+  color: #0f4fb8;
 }
