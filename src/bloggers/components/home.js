@@ -74,7 +74,7 @@ function Home(){
             <Link to="/" className="nav-link">Home</Link>
           </div>
           <div className="nav-content">
-            <Link to="/blogs/" className="nav-link">Blogs</Link>
+            <Link to="/blogs/" className="nav-link">My Blogs</Link>
           </div>
           <div className="nav-content">
             <Link to="/blogs/" className="nav-link">Logout</Link>
