@@ -44,7 +44,7 @@ function Login(){
         showToast('success', response.data.message);
         Cookies.set('isLoggedIn', 'true', {secure: true, sameSite: 'Strict' });
         Cookies.set('userID', userId ,{secure: true, sameSite: 'Strict'});
-        Cookies.set('jwtToken', token, {secure:true, sameSite: 'Strict'});
+        Cookies.set('jwtToken', jwtToken, {secure:true, sameSite: 'Strict'});
         navigate('/');
       }).catch(error => {
         console.log(error);
