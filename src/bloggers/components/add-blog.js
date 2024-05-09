@@ -7,7 +7,7 @@ import companyLogo from '../../assets/images/logo.png';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/css/style.css'
 
-function Home(){
+function AddBlog(){
   const [username, setUsername] = useState('User');
 
   const showToast = (type, message) => {
@@ -25,7 +25,7 @@ function Home(){
   useEffect(() => {
     const fetchUsername = async () => {
       try {
-        const response = await axios.get(`http://localhost:5234/api/ManageUser/${userID}`);
+        const response = await axios.get(`http://localhost:5234/api/manage-user/${userID}`);
         if (response.status !== 200) {
           showToast('error', 'Username fetch unsuccessful');
         } else {
@@ -55,7 +55,7 @@ function Home(){
         <input type="text" placeholder="Search...." className="search-bar"/>
         <div className="create-div">
           <button className="create-button">
-            <Link to="/add-blogs/"><p>Create Blog</p></Link>
+            <p>Create Blog</p>
           </button>
         </div>
         <div className="header-icons">
@@ -76,9 +76,6 @@ function Home(){
           <div className="nav-content">
             <Link to="/blogs/" className="nav-link">Blogs</Link>
           </div>
-          <div className="nav-content">
-            <Link to="/blogs/" className="nav-link">Logout</Link>
-          </div>
         </div>
         <div className="home-body">
           <div className="head-home-card">
@@ -93,4 +90,4 @@ function Home(){
   );
 };
 
-export default Home;
+export default AddBlog;

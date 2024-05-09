@@ -36,7 +36,7 @@ function Login(){
     }else{
       axios.post('http://localhost:5234/api/user/login', formData).then(response => {
         const token = response.data.jwtToken;
-        const userId = response.data.userID;
+        const userId = response.data.userId;
         setMessage(response.data.message);
         showToast('success', response.data.message);
         Cookies.set('isLoggedIn', 'true', {secure: true, sameSite: 'Strict'});
