@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/css/style.css'
 
 function Home(){
+  const [username, setUsername] = useState('User');
 
   const showToast = (type, message) => {
     toast[type](message, {
@@ -19,6 +20,30 @@ function Home(){
       draggable: true,
     });
   };
+
+  const userID = Cookies.get('userID');
+  useEffect(() => {
+    const fetchUsername = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5234/api/user/${userID}`);
+        if (response.status !== 200) {
+          showToast('error', 'Username fetch unsuccessful');
+        } else {
+          const fetchedUsername = response.data.username;
+          if (!fetchedUsername) {
+            setUsername('User');
+          } else {
+            setUsername(fetchedUsername);
+          }
+        }
+      } catch (error) {
+        console.error('Problem Fetching Username', error);
+        showToast('error', 'Problem Fetching Username');
+      }
+    };
+
+    fetchUsername();
+  }, []);
 
   return(
     <div className="home-main">
@@ -39,21 +64,27 @@ function Home(){
           </button>
           <button className="user-circle">
             <i className="fas fa-user-circle"></i>
-            <p className="username">User</p>
+            <p className="username">{username}</p>
           </button>
         </div>
       </div>
-      <div className="side-nav">
-        <div className="nav-content">
-          <Link/>
+      <div className="home-content">
+        <div className="side-nav">
+          <div className="nav-content">
+            <Link to="/" className="nav-link">Home</Link>
+          </div>
+          <div className="nav-content">
+            <Link to="/blogs/" className="nav-link">Blogs</Link>
+          </div>
         </div>
-        <div className="nav-content">
-          <Link/>
+        <div className="home-body">
+          <div className="head-home-card">
+            <h1> Welcome to Bislerium!</h1>
+            <h4> Get the latest blogs and blog updates here </h4>
+          </div>
+          <div className="home-card">
+          </div>
         </div>
-      </div>
-      <div className="home-body">
-        <section className="blog-card">
-        </section>
       </div>
     </div>
   );

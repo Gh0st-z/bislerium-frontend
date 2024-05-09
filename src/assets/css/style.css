@@ -1,6 +1,7 @@
 body{
   height: 100%;
   width: 100%;
+  overflow: hidden;
   display: flex;
 }
 
@@ -490,28 +491,60 @@ body{
   background-color: rgba(67, 108, 216, 0.55);
 }
 
+.home-content {
+  display: flex;
+  height: 90vh;
+}
+
 .side-nav{
   display: flex;
+  flex-direction: column;
   height: 90vh;
   width: 35vh;
   border-right: 1px solid;
 }
 
 .nav-content{
-  position: relative;
   height: 7vh;
-  width: 20vh;
+  width: 70%;
   margin-left: 35px;
   margin-top: 25px;
   border: 1px solid;
   border-radius: 15px;
+  text-align: center;
+}
+
+.nav-link{
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.nav-link:hover{
+  text-decoration-color: rgba(67, 108, 216, 0.55);
 }
 
 .home-body{
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: red;
-  width: 200px;
-  height: 7vh;
+  width: 84%;
+  height: 90vh;
+  overflow: scroll;
+}
+
+.head-home-card{
+  width: 50%;
+  height: 20vh;
+  margin-left:250px;
+  border: 1px solid;
+  margin-top: 40px;
+  border-radius: 20px;
+  text-align: center;
+  padding: 25px;
+}
+
+.home-card{
+  width: 70%;
+  height: 20vh;
+  margin-left:130px;
+  border: 1px solid;
+  margin-top: 40px;
+  border-radius: 20px;
 }
