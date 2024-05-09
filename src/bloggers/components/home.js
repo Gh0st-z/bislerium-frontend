@@ -22,6 +22,8 @@ function Home(){
   return(
     <div className="home-main">
       <ToastContainer/>
+      <div className="home-header">
+      </div>
       <div className="side-nav">
         <Link/>
         <Link/>
