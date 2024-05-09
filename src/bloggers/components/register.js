@@ -53,7 +53,7 @@ function Register(){
           showToast('error', 'The passwords do not match!');
       }
       else{
-        axios.post( 'http://localhost:5234/api/user/register/', formData)
+        axios.post( 'http://localhost:5234/api/user/register', formData)
         .then(response => {
             console.log(response.data.message);
             setMessage(response.data.message);
