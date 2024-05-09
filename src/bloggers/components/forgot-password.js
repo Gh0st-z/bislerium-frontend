@@ -12,7 +12,6 @@ function ForgotPassword(){
   const [message, setMessage] = useState('');
   const [formData, setFormData] = useState({
     UsernameOrEmail: '',
-    Password: '',
   });
 
   const [formKey, setFormKey] = useState(0);
@@ -31,10 +30,10 @@ function ForgotPassword(){
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.UsernameOrEmail.trim() || !formData.Password.trim()) {
+    if (!formData.UsernameOrEmail.trim()) {
       showToast('error', 'Please Fill In All The Fields.');
     }else{
-      axios.post('http://localhost:5234/api/user/login', formData).then(response => {
+      axios.post('http://localhost:5234/api/user/resetpassword', formData).then(response => {
         setMessage(response.data.message);
         showToast('success', response.data.message);
         navigate('/');
@@ -68,18 +67,8 @@ function ForgotPassword(){
             <img src={envelope} className="focus-input100"/>
           </div>
           <div className="wrap-input100">
-            <span className="label-input100">Password: </span>
-            <input className="input100" type="password" name="Password" placeholder="Enter your password" onChange={handleInput}/>
-            <img src={padlock} className="focus-input100"/>
+            <button className="login-btn">Reset Password</button>
           </div>
-          <a href="#" className="for-pass">Forgot Password?</a>
-          <div className="wrap-input100">
-            <button className="login-btn">Login</button>
-          </div>
-          <span className="account">Don't have an account?</span><br/>
-          <nav>
-            <Link className="loginlink" to="/register"> Create an account</Link>
-          </nav>
         </form>
       </div>
     </div>
