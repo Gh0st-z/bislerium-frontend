@@ -4,6 +4,7 @@ import Register from './bloggers/components/register.js';
 import Home from './bloggers/components/home.js';
 import ForgotPassword from './bloggers/components/forgot-password.js';
 import './App.css';
+import BloggersPage from './admin/components/totaluser.js';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="login/" element={<Login/>} />
         <Route path="register/" element={<Register/>} />
         <Route path="forgot-password/" element={<ForgotPassword/>} />
+        <Route path="totaluser/" element={<BloggersPage/>} />
       </Routes>
     </Router>
   );
