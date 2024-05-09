@@ -29,29 +29,28 @@ function Login(){
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.UsernameOrEmail.trim() || !formData.Password.trim()) {
       showToast('error', 'Please Fill In All The Fields.');
     }else{
-       try{
-         const response = await axios.post('http://localhost:5234/api/user/login', formData);
-         const responseData = response.data;
-         const {jwtToken, userId} = responseData;
-
-         if(!jwtToken || !userId){
-           showToast('error', 'Invalid Response Data!');
-         }
-
-         showToast('success', 'Logged in successfully!');
-         Cookies.set('isLoggedIn', 'true', {secure:true, sameSite: 'Strict'});
-         Cookies.set('token', jwtToken, {secure:true, sameSite: 'Strict'});
-         Cookies.set('userId', userId, {secure:true, sameSite: 'Strict'});
-
-         navigate('/');
-       }catch (error){
-         showToast('error', 'Error occured during login process! Try Again!');
-       }
+      axios.post('http://localhost:5234/api/user/login', formData).then(response => {
+        const { jwtToken, userId, message } = response.data;
+        if (!jwtToken) {
+          showToast('error', 'JWT Token is missing.');
+          return;
+        }
+        setMessage(response.data.message);
+        showToast('success', response.data.message);
+        Cookies.set('isLoggedIn', 'true', {secure: true, sameSite: 'Strict' });
+        Cookies.set('userID', userId ,{secure: true, sameSite: 'Strict'});
+        Cookies.set('jwtToken', token, {secure:true, sameSite: 'Strict'});
+        navigate('/');
+      }).catch(error => {
+        console.log(error);
+        setMessage('Error occured during login process. Please Try Again!');
+        showToast('error', 'Error occured during login process. Please Try Again!');
+      });
     };
   };
 
