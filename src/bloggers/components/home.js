@@ -25,7 +25,7 @@ function Home(){
   useEffect(() => {
     const fetchUsername = async () => {
       try {
-        const response = await axios.get(`http://localhost:5234/api/user/${userID}`);
+        const response = await axios.get(`http://localhost:5234/api/manage-user/${userID}`);
         if (response.status !== 200) {
           showToast('error', 'Username fetch unsuccessful');
         } else {

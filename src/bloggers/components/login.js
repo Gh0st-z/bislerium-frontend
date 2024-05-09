@@ -39,9 +39,9 @@ function Login(){
         const userId = response.data.userID;
         setMessage(response.data.message);
         showToast('success', response.data.message);
-        Cookies.set('isLoggedIn', 'true', { expires: 1, secure: true, sameSite: 'Strict' });
-        Cookies.set('userID', userId ,{expires:1, secure: true, sameSite: 'Strict'});
-        Cookies.set('jwtToken', token, {expires: 1, secure:true, sameSite: 'Strict'});
+        Cookies.set('isLoggedIn', 'true', {secure: true, sameSite: 'Strict'});
+        Cookies.set('userID', userId ,{secure: true, sameSite: 'Strict'});
+        Cookies.set('jwtToken', token, {secure:true, sameSite: 'Strict'});
         navigate('/');
       }).catch(error => {
         console.log(error);
