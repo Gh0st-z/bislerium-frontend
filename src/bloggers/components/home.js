@@ -23,6 +23,24 @@ function Home(){
     <div className="home-main">
       <ToastContainer/>
       <div className="home-header">
+        <div className="logo-div">
+          <img src=""/>
+        </div>
+        <input type="text" placeholder="Search...." className="search-bar"/>
+        <div className="create-div">
+          <button className="create-button">
+            
+          </button>
+        </div>
+        <div className="header-icons">
+          <button className="bell-icon">
+            <i className="fas fa-bell"></i>
+          </button>
+          <button className="user-circle">
+            <i className="fas fa-user-circle"></i>
+            <p className="username">User</p>
+          </button>
+        </div>
       </div>
       <div className="side-nav">
         <Link/>
