@@ -6,8 +6,8 @@ import Cookies from 'js-cookie';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/css/style.css'
 
-function Home(){
-
+function UserBlog(){
+  
   const showToast = (type, message) => {
     toast[type](message, {
       position: 'top-center',
@@ -22,11 +22,9 @@ function Home(){
   return(
     <div className="home-main">
       <ToastContainer/>
-      <div className="home-header">
-      </div>
       <div className="side-nav">
-        <Link/>
-        <Link/>
+        <Link>
+        <Link>
       </div>
       <div className="home-body">
         <section className="blog-card">
@@ -36,4 +34,4 @@ function Home(){
   );
 };
 
-export default Home;
+export default UserBlog;

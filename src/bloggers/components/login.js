@@ -35,8 +35,11 @@ function Login(){
       showToast('error', 'Please Fill In All The Fields.');
     }else{
       axios.post('http://localhost:5234/api/user/login', formData).then(response => {
+        const token = response.data.jwtToken;
         setMessage(response.data.message);
         showToast('success', response.data.message);
+        Cookies.set('isLoggedIn', 'true', { expires: 1, secure: true, sameSite: 'Strict' });
+        Cookies.set('jwtToken', token, {expires: 1, secure:true, sameSite: 'Strict'});
         navigate('/');
       }).catch(error => {
         console.log(error);

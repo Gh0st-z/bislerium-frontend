@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   Progress,
   Anchor,
-  Text,
-  Group,
   ActionIcon,
-  Container,
   Title,
   Button,
-  Flex,
   Divider,
+  Box,
+  Code,
+  Container,
+  Flex,
+  Group,
+  ScrollArea,
+  Text,
 } from "@mantine/core";
 import classes from "./list-blog.module.css";
-import { IconEdit, IconEye, IconTrash } from "@tabler/icons-react";
+import {
+  IconEdit,
+  IconEye,
+  IconTrash,
+  IconSwitchHorizontal,
+  IconLogout,
+  IconList,
+  IconDashboard,
+} from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 
 const data = [
@@ -54,37 +65,94 @@ const data = [
     reviews: { upvote: 8124, downVote: 1847 },
   },
 ];
+const navData = [
+  { link: "/dashboard", label: "Dashboard", icon: IconDashboard },
+  { link: "/dashboard/list", label: "List Blogs", icon: IconList },
+];
 
 const ListBlog = () => {
+  const [active, setActive] = useState("Dashboard");
+
+  const links = navData.map((item) => (
+    <Link
+      className={classes.link}
+      data-active={item.label === active || undefined}
+      key={item.label}
+      to={item.link}
+    >
+      <item.icon className={classes.linkIcon} stroke={1.5} />
+      <span>{item.label}</span>
+    </Link>
+  ));
   const rows = data.map((row) => {
     return <TableRows row={row} />;
   });
 
   return (
-    <Container fluid>
-      <Flex align={"center"} justify="space-between">
-        <Title>All Blogs</Title>
-        <Button component={Link} to="/dashboard/create">
-          Create New
-        </Button>
+    <Box>
+      <Flex gap={"sm"} justify={"start"}>
+        <nav className={classes.navbar}>
+          <div className={classes.navbarMain}>
+            <Group className={classes.header} justify="space-between">
+              <Text>Blogger</Text>
+              <Code fw={700}>v3.1.2</Code>
+            </Group>
+            {links}
+          </div>
+
+          <div className={classes.footer}>
+            <a
+              href="#"
+              className={classes.link}
+              onClick={(event) => event.preventDefault()}
+            >
+              <IconSwitchHorizontal className={classes.linkIcon} stroke={1.5} />
+              <span>Change account</span>
+            </a>
+
+            <a
+              href="#"
+              className={classes.link}
+              onClick={(event) => event.preventDefault()}
+            >
+              <IconLogout className={classes.linkIcon} stroke={1.5} />
+              <span>Logout</span>
+            </a>
+          </div>
+        </nav>
+        <ScrollArea
+          h={"100vh"}
+          py={"lg"}
+          className={classes.mainContainer}
+          style={{ flexGrow: 1 }}
+        >
+          <Container fluid>
+            <Flex align={"center"} justify="space-between">
+              <Title>All Blogs</Title>
+              <Button component={Link} to="/dashboard/create">
+                Create New
+              </Button>
+            </Flex>
+            <Divider mt={"xs"} mb={"lg"} />
+            <Table.ScrollContainer w={"100%"} styles={{ minWidth: "100%" }}>
+              <Table verticalSpacing="xs">
+                <Table.Thead>
+                  <Table.Tr>
+                    <Table.Th>Blog title</Table.Th>
+                    <Table.Th>Published</Table.Th>
+                    <Table.Th>Creator</Table.Th>
+                    <Table.Th>Reviews</Table.Th>
+                    <Table.Th>Reviews distribution</Table.Th>
+                    <Table.Th>Action</Table.Th>
+                  </Table.Tr>
+                </Table.Thead>
+                <Table.Tbody>{rows}</Table.Tbody>
+              </Table>
+            </Table.ScrollContainer>
+          </Container>
+        </ScrollArea>
       </Flex>
-      <Divider mt={"xs"} mb={"lg"} />
-      <Table.ScrollContainer w={"100%"} styles={{ minWidth: "100%" }}>
-        <Table verticalSpacing="xs">
-          <Table.Thead>
-            <Table.Tr>
-              <Table.Th>Blog title</Table.Th>
-              <Table.Th>Published</Table.Th>
-              <Table.Th>Creator</Table.Th>
-              <Table.Th>Reviews</Table.Th>
-              <Table.Th>Reviews distribution</Table.Th>
-              <Table.Th>Action</Table.Th>
-            </Table.Tr>
-          </Table.Thead>
-          <Table.Tbody>{rows}</Table.Tbody>
-        </Table>
-      </Table.ScrollContainer>
-    </Container>
+    </Box>
   );
 };
 
