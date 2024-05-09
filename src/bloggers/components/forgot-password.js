@@ -11,7 +11,7 @@ import '../../assets/css/style.css'
 function ForgotPassword(){
   const [message, setMessage] = useState('');
   const [formData, setFormData] = useState({
-    UsernameOrEmail: '',
+    Email: '',
   });
 
   const [formKey, setFormKey] = useState(0);
@@ -30,7 +30,7 @@ function ForgotPassword(){
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.UsernameOrEmail.trim()) {
+    if (!formData.Email.trim()) {
       showToast('error', 'Please Fill In All The Fields.');
     }else{
       axios.post('http://localhost:5234/api/user/resetpassword', formData).then(response => {
@@ -63,7 +63,7 @@ function ForgotPassword(){
         <form key={formKey} action="" method="POST" onSubmit={handleSubmit}>
           <div className="wrap-input100">
             <span className="label-input100">Username/Email: </span>
-            <input className="input100" type="text" name="UsernameOrEmail" placeholder="Enter your username/email" onChange={handleInput}/>
+            <input className="input100" type="text" name="Email" placeholder="Enter your username/email" onChange={handleInput}/>
             <img src={envelope} className="focus-input100"/>
           </div>
           <div className="wrap-input100">
