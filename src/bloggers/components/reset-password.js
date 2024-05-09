@@ -5,13 +5,13 @@ import {ToastContainer, toast} from 'react-toastify';
 import Cookies from 'js-cookie';
 import padlock from '../../assets/images/padlock.png';
 import 'react-toastify/dist/ReactToastify.css';
-import envelope from '../../assets/images/envelope.png';
+import padlock from '../../assets/images/padlock.png';
 import '../../assets/css/style.css'
 
-function ForgotPassword(){
+function ResetPassword(){
   const [message, setMessage] = useState('');
   const [formData, setFormData] = useState({
-    Email: '',
+    Password: '',
   });
 
   const [formKey, setFormKey] = useState(0);
@@ -30,7 +30,7 @@ function ForgotPassword(){
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.Email.trim()) {
+    if (!formData.Password.trim()) {
       showToast('error', 'Please Fill In All The Fields.');
     }else{
       axios.post('http://localhost:5234/api/user/resetpassword', formData).then(response => {
@@ -58,16 +58,21 @@ function ForgotPassword(){
       <ToastContainer/>
       <div className="login-form">
         <div className="header-div">
-          <h1 className="form-header">Forgot Password</h1>
+          <h1 className="form-header">Reset Password</h1>
         </div>
         <form key={formKey} action="" method="POST" onSubmit={handleSubmit}>
           <div className="wrap-input100">
-            <span className="label-input100">Username/Email: </span>
-            <input className="input100" type="text" name="Email" placeholder="Enter your username/email" onChange={handleInput}/>
-            <img src={envelope} className="focus-input100"/>
+            <span className="label-input100">Enter New Password: </span>
+            <input className="input100" type="text" name="Password" placeholder="Enter your username/email" onChange={handleInput}/>
+            <img src={padlock} className="focus-input100"/>
           </div>
           <div className="wrap-input100">
-            <button className="login-btn">Send Verification</button>
+            <span className="label-input100">Re-Enter New Password: </span>
+            <input className="input100" type="text" name="Password2" placeholder="Enter your username/email" onChange={handleInput}/>
+            <img src={padlock} className="focus-input100"/>
+          </div>
+          <div className="wrap-input100">
+            <button className="login-btn">Reset Password</button>
           </div>
         </form>
       </div>
@@ -75,4 +80,4 @@ function ForgotPassword(){
   );
 };
 
-export default ForgotPassword;
+export default ResetPassword;

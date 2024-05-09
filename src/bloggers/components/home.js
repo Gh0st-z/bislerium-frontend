@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {ToastContainer, toast} from 'react-toastify';
 import Cookies from 'js-cookie';
+import companyLogo from '../../assets/images/logo.png';
 import 'react-toastify/dist/ReactToastify.css';
 import '../../assets/css/style.css'
 
@@ -24,12 +25,12 @@ function Home(){
       <ToastContainer/>
       <div className="home-header">
         <div className="logo-div">
-          <img src=""/>
+          <img src={companyLogo} className="image"/>
         </div>
         <input type="text" placeholder="Search...." className="search-bar"/>
         <div className="create-div">
           <button className="create-button">
-            
+            <p>Create Blog</p>
           </button>
         </div>
         <div className="header-icons">
@@ -43,8 +44,12 @@ function Home(){
         </div>
       </div>
       <div className="side-nav">
-        <Link/>
-        <Link/>
+        <div className="nav-content">
+          <Link/>
+        </div>
+        <div className="nav-content">
+          <Link/>
+        </div>
       </div>
       <div className="home-body">
         <section className="blog-card">
