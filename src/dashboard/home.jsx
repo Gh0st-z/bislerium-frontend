@@ -1,22 +1,26 @@
-import { Box, Group, Stack, Title } from "@mantine/core";
-import React from "react";
+import {
+  Stack,
+  Title,
+  Box,
+  Code,
+  Flex,
+  Group,
+  ScrollArea,
+  Text,
+} from "@mantine/core";
+import React, { useState } from "react";
 import StatusCard from "../component/status-card";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import { Bar, Line, Pie } from "react-chartjs-2";
-
-const data = {
-  labels: ["Site A", "Site B"],
-  datasets: [
-    {
-      label: "Number of Articles",
-      backgroundColor: ["#FF6384", "#36A2EB"],
-      borderColor: "rgba(0,0,0,1)",
-      borderWidth: 2,
-      data: [150, 200],
-    },
-  ],
-};
+import classes from "./list-blog.module.css";
+import {
+  IconSwitchHorizontal,
+  IconLogout,
+  IconList,
+  IconDashboard,
+} from "@tabler/icons-react";
+import { Link } from "react-router-dom";
 
 const options = {
   title: {
@@ -35,7 +39,25 @@ const options = {
   },
 };
 Chart.register(CategoryScale);
+
+const navData = [
+  { link: "/dashboard", label: "Dashboard", icon: IconDashboard },
+  { link: "/dashboard/list", label: "List Blogs", icon: IconList },
+];
 const DashboardHome = () => {
+  const [active, setActive] = useState("Dashboard");
+
+  const links = navData.map((item) => (
+    <Link
+      className={classes.link}
+      data-active={item.label === active || undefined}
+      key={item.label}
+      to={item.link}
+    >
+      <item.icon className={classes.linkIcon} stroke={1.5} />
+      <span>{item.label}</span>
+    </Link>
+  ));
   const chartData = {
     labels: ["Red", "Orange", "Blue"],
     datasets: [
@@ -48,26 +70,66 @@ const DashboardHome = () => {
     ],
   };
   return (
-    <div>
-      <Stack>
-        <Box>
-          <Title order={3}> Overview</Title>
-          <Group>
-            <StatusCard
-              progressValue={55}
-              title={"Monthly Goal"}
-              value={"Rs. 5.41 / Rs. 10"}
-            />
-          </Group>
-        </Box>
-        <Box>
-          <Group>
-            <LineChartNoOfUserAddingBlog />
-            <LineChartNoOfUserAddingBlog />
-          </Group>
-        </Box>
-      </Stack>
-    </div>
+    <Box>
+      <Flex gap={"sm"} justify={"start"}>
+        <nav className={classes.navbar}>
+          <div className={classes.navbarMain}>
+            <Group className={classes.header} justify="space-between">
+              <Text>Blogger</Text>
+              <Code fw={700}>v3.1.2</Code>
+            </Group>
+            {links}
+          </div>
+
+          <div className={classes.footer}>
+            <a
+              href="#"
+              className={classes.link}
+              onClick={(event) => event.preventDefault()}
+            >
+              <IconSwitchHorizontal className={classes.linkIcon} stroke={1.5} />
+              <span>Change account</span>
+            </a>
+
+            <a
+              href="#"
+              className={classes.link}
+              onClick={(event) => event.preventDefault()}
+            >
+              <IconLogout className={classes.linkIcon} stroke={1.5} />
+              <span>Logout</span>
+            </a>
+          </div>
+        </nav>
+        <ScrollArea
+          h={"100vh"}
+          py={"lg"}
+          className={classes.mainContainer}
+          style={{ flexGrow: 1 }}
+        >
+          <div>
+            <Stack>
+              <Box>
+                <Title order={3}> Overview</Title>
+                <Group>
+                  <StatusCard
+                    progressValue={55}
+                    title={"Monthly Goal"}
+                    value={"Rs. 5.41 / Rs. 10"}
+                  />
+                </Group>
+              </Box>
+              <Box>
+                <Group>
+                  <LineChartNoOfUserAddingBlog />
+                  <LineChartNoOfUserAddingBlog />
+                </Group>
+              </Box>
+            </Stack>
+          </div>
+        </ScrollArea>
+      </Flex>
+    </Box>
   );
 };
 
