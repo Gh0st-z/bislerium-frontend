@@ -79,12 +79,12 @@ function ResetPassword(){
         <form key={formKey} action="" method="POST" onSubmit={handleSubmit}>
           <div className="wrap-input100">
             <span className="label-input100">Enter New Password: </span>
-            <input className="input100" type="text" name="Password" placeholder="Enter your username/email" onChange={handleInput}/>
+            <input className="input100" type="text" name="Password" placeholder="Enter your new password" onChange={handleInput}/>
             <img src={padlock} className="focus-input100"/>
           </div>
           <div className="wrap-input100">
             <span className="label-input100">Re-Enter New Password: </span>
-            <input className="input100" type="text" name="Password2" placeholder="Enter your username/email" onChange={handleInput}/>
+            <input className="input100" type="text" name="Password2" placeholder="Re-Enter your new password" onChange={handleInput}/>
             <img src={padlock} className="focus-input100"/>
           </div>
           <div className="wrap-input100">
