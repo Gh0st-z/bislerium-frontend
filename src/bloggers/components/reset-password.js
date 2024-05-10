@@ -10,14 +10,14 @@ import '../../assets/css/style.css'
 function ResetPassword(){
   const [message, setMessage] = useState('');
   const [formData, setFormData] = useState({
-    Password: '',
+    newPassword: '',
   });
 
   const [formKey, setFormKey] = useState(0);
   const navigate = useNavigate();
 
   const [passData, setPassData] = useState({
-        Password2: '',
+    Password2: '',
   });
 
   const showToast = (type, message) => {
@@ -33,10 +33,10 @@ function ResetPassword(){
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.Password.trim()) {
+    if (!formData.newPassword.trim()) {
       showToast('error', 'Please Fill In All The Fields.');
     }else{
-      if (formData.Password != passData.Password2) {
+      if (formData.newPassword !== passData.Password2) {
           showToast('error', 'The passwords do not match!');
       }
       else{
@@ -79,12 +79,12 @@ function ResetPassword(){
         <form key={formKey} action="" method="POST" onSubmit={handleSubmit}>
           <div className="wrap-input100">
             <span className="label-input100">Enter New Password: </span>
-            <input className="input100" type="text" name="Password" placeholder="Enter your new password" onChange={handleInput}/>
+            <input className="input100" type="password" name="newPassword" placeholder="Enter your new password" onChange={handleInput}/>
             <img src={padlock} className="focus-input100"/>
           </div>
           <div className="wrap-input100">
             <span className="label-input100">Re-Enter New Password: </span>
-            <input className="input100" type="text" name="Password2" placeholder="Re-Enter your new password" onChange={handleInput}/>
+            <input className="input100" type="password" name="Password2" placeholder="Re-Enter your new password" onChange={handleInput}/>
             <img src={padlock} className="focus-input100"/>
           </div>
           <div className="wrap-input100">

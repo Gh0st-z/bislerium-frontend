@@ -15,16 +15,9 @@ function AddBlog(){
   const [formKey, setFormKey] = useState(0);
 
   const [formData, setFormData] = useState({
-      Firstname: '',
-      Middlename: '',
-      Lastname: '',
-      Email: '',
-      Username: '',
-      Password: '',
-  });
-
-  const [passData, setPassData] = useState({
-        password2: '',
+      Title: '',
+      Description: '',
+      BlogImage: '',
   });
 
   const showToast = (type, message) => {
@@ -65,31 +58,23 @@ function AddBlog(){
   const handleSubmit= async(e) =>{
     e.preventDefault();
     if (
-        !formData.Firstname.trim() ||
-        !formData.Lastname.trim() ||
-        !formData.Email.trim() ||
-        !formData.Username.trim() ||
-        !formData.Password.trim()
+        !formData.Title.trim() ||
+        !formData.Description.trim()
       ){
         showToast('error', 'Please fill in all fields.');
     }
     else{
-      if (formData.Password != passData.password2) {
-          showToast('error', 'The passwords do not match!');
-      }
-      else{
-        axios.post( 'http://localhost:5234/api/user/register', formData)
-        .then(response => {
-            console.log(response.data.message);
-            setMessage(response.data.message);
-            showToast('success', 'Account successfully created!');
-            setFormKey((prevKey) => prevKey + 1);
-        }).catch(error =>{
-            console.log(error);
-            setMessage('Error occurred during registration.');
-            showToast('error', 'Error occurred during registration.');
-        });
-      }
+      axios.post( 'http://localhost:5234/api/blog/createblog', formData)
+      .then(response => {
+          console.log(response.data.message);
+          setMessage(response.data.message);
+          showToast('success', 'Blog successfully created!');
+          setFormKey((prevKey) => prevKey + 1);
+      }).catch(error =>{
+          console.log(error);
+          setMessage('Error occurred during registration.');
+          showToast('error', 'Error occurred during registration.');
+      });
     }
   };
 
@@ -100,14 +85,6 @@ function AddBlog(){
           [name]: value,
       }));
   };
-
-  const handlePassValidation = (e) => {
-      const {name, value} = e.target;
-      setPassData((prevState) => ({
-          ...prevState,
-          [name]: value,
-      }));
-  }
 
   return(
     <div className="home-main">
@@ -139,41 +116,24 @@ function AddBlog(){
             <Link to="/blogs/" className="nav-link">Logout</Link>
           </div>
         </div>
-        <div className="home-body">
-        <form key={formKey} action="" method="POST" onSubmit={handleSubmit}>
-          <div className="name-input100">
-              <span className="name-label-input100">First Name: </span>
-              <input className="n-input100" type="text" name="Firstname" onChange={handleInputChange}/>
-          </div>
-          <div className="name-input100">
-              <span className="name-label-input100">Middle Name: </span>
-              <input className="n-input100" type="text" name="Middlename" onChange={handleInputChange}/>
-          </div>
-          <div className="name-input100">
-              <span className="lname-label-input100">Last Name: </span>
-              <input className="ln-input100" type="text" name="Lastname" onChange={handleInputChange}/>
-          </div>
-          <div className="wrap-input100">
-              <span className="label-input100">Email: </span>
-              <input className="input100" type="email" name="Email" placeholder="Enter your Email" onChange={handleInputChange}/>
-          </div>
-          <div className="wrap-input100">
-              <span className="label-input100">Username: </span>
-              <input className="un-input100" type="text" name="Username" onChange={handleInputChange}/>
-          </div>
-          <div className="wrap-input100">
-              <span className="label-input100">Password: </span>
-              <input className="input100" type="password" name="Password" placeholder="Enter your password" onChange={handleInputChange}/>
-          </div>
-          <div className="wrap-input100">
-              <span className="label-input100">Confirm Password: </span>
-              <input className="input100" type="password" name="password2" placeholder="Re-Enter your password" onChange={handlePassValidation}/>
-          </div>
-          <div className="wrap-input100">
-              <button className="register-btn">Create</button>
-          </div>
-          <p className="account-alr">Already have an account? <Link to="/login/">Sign in here</Link></p>
-        </form>
+        <div className="blog-body">
+          <form key={formKey} action="" method="POST" onSubmit={handleSubmit}>
+            <div className="blog-input100">
+                <span className="label-blog100">Blog Title: </span>
+                <input className="blog100" type="text" name="Title" placeholder="Enter your Email" onChange={handleInputChange}/>
+            </div>
+            <div className="blog-input100">
+                <span className="label-blog100">Blog Content: </span>
+                <input className="blog100" type="text" name="Description" onChange={handleInputChange}/>
+            </div>
+            <div class="blog-input100">
+                <span class="label-blog100">Blog Image: </span>
+                <input class="sdo-file-input100" type="file" name="BlogImage" onChange={handleInputChange}/>
+            </div>
+            <div className="blog-input100">
+                <button className="blg-btn">Add Blog</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

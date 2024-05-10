@@ -548,3 +548,44 @@ body{
   margin-top: 40px;
   border-radius: 20px;
 }
+
+/* ------ Add Blog --------- */
+.blog-body{
+  width: 82%;
+  align-content: center;
+  text-align: center;
+}
+
+.blog-input100{
+  width: 100%;
+  margin: 15px;
+  position: relative;
+}
+
+.label-blog100{
+  margin-top: 20px;
+  display: block;
+}
+
+.blog100{
+  width: 475px;
+  border: none;
+  border-bottom: 2px solid #8d908e;
+  transition: border-color 0.3s;
+  outline: none;
+  line-height: 1.2;
+  height: 55px;
+  background: transparent;
+}
+
+.blg-btn{
+  width: 200px;
+  height: 40px;
+  margin-top: 35px;
+  border-radius: 5px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
+}
