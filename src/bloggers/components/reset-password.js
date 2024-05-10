@@ -5,7 +5,6 @@ import {ToastContainer, toast} from 'react-toastify';
 import Cookies from 'js-cookie';
 import padlock from '../../assets/images/padlock.png';
 import 'react-toastify/dist/ReactToastify.css';
-import padlock from '../../assets/images/padlock.png';
 import '../../assets/css/style.css'
 
 function ResetPassword(){
@@ -16,6 +15,10 @@ function ResetPassword(){
 
   const [formKey, setFormKey] = useState(0);
   const navigate = useNavigate();
+
+  const [passData, setPassData] = useState({
+        Password2: '',
+  });
 
   const showToast = (type, message) => {
     toast[type](message, {
@@ -33,15 +36,20 @@ function ResetPassword(){
     if (!formData.Password.trim()) {
       showToast('error', 'Please Fill In All The Fields.');
     }else{
-      axios.post('http://localhost:5234/api/user/resetpassword', formData).then(response => {
-        setMessage(response.data.message);
-        showToast('success', response.data.message);
-        navigate('/');
-      }).catch(error => {
-        console.log(error);
-        setMessage('Error occured during login process. Please Try Again!');
-        showToast('error', 'Error occured during login process. Please Try Again!');
-      });
+      if (formData.Password != passData.Password2) {
+          showToast('error', 'The passwords do not match!');
+      }
+      else{
+        axios.post('http://localhost:5234/api/user/resetpassword', formData).then(response => {
+          setMessage(response.data.message);
+          showToast('success', response.data.message);
+          navigate('/');
+        }).catch(error => {
+          console.log(error);
+          setMessage('Error occured during login process. Please Try Again!');
+          showToast('error', 'Error occured during login process. Please Try Again!');
+        });
+      };
     };
   };
 
@@ -50,6 +58,14 @@ function ResetPassword(){
     setFormData((prevState) => ({
       ...prevState,
       [name]:value,
+    }));
+  }
+
+  const handlePassValidation = (e) => {
+    const {name, value} = e.target;
+    setPassData((prevState) => ({
+        ...prevState,
+        [name]: value,
     }));
   }
 

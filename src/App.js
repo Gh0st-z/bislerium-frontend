@@ -8,6 +8,7 @@ import Login from "./bloggers/components/login.js";
 import Register from "./bloggers/components/register.js";
 import Home from "./bloggers/components/home.js";
 import ForgotPassword from "./bloggers/components/forgot-password.js";
+import ResetPassword from "./bloggers/components/reset-password.js";
 import AddBlog from "./bloggers/components/add-blog.js";
 import "./App.css";
 import BloggersPage from "./admin/components/totaluser.js";
@@ -27,6 +28,7 @@ function App() {
           <Route path="login/" element={<Login />} />
           <Route path="register/" element={<Register />} />
           <Route path="forgot-password/" element={<ForgotPassword />} />
+          <Route path="reset-password/" element={<ResetPassword/>} />
           <Route path="add-blogs/" element={<AddBlog/>} />
           <Route path="totaluser/" element={<BloggersPage />} />
           <Route path="dashboard/" element={<DashboardHome />} />
