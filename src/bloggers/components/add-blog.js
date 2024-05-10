@@ -120,7 +120,7 @@ function AddBlog(){
           <form key={formKey} action="" method="POST" onSubmit={handleSubmit}>
             <div className="blog-input100">
                 <span className="label-blog100">Blog Title: </span>
-                <input className="blog100" type="text" name="Title" placeholder="Enter your Email" onChange={handleInputChange}/>
+                <input className="blog100" type="text" name="Title" onChange={handleInputChange}/>
             </div>
             <div className="blog-input100">
                 <span className="label-blog100">Blog Content: </span>
