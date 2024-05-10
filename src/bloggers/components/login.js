@@ -35,7 +35,7 @@ function Login(){
       showToast('error', 'Please Fill In All The Fields.');
     }else{
       axios.post('http://localhost:5234/api/user/login', formData).then(response => {
-        const { jwtToken, userId, message } = response.data;
+        const { jwtToken, userId, role, message } = response.data;
         if (!jwtToken) {
           showToast('error', 'JWT Token is missing.');
           return;
@@ -45,7 +45,12 @@ function Login(){
         Cookies.set('isLoggedIn', 'true', {secure: true, sameSite: 'Strict' });
         Cookies.set('userID', userId ,{secure: true, sameSite: 'Strict'});
         Cookies.set('jwtToken', jwtToken, {secure:true, sameSite: 'Strict'});
-        navigate('/');
+        if (role == 'Blogger'){
+          navigate('/');
+        }
+        else if (role == 'Admin'){
+          navigate('/dashboard/')
+        };
       }).catch(error => {
         console.log(error);
         setMessage('Error occured during login process. Please Try Again!');

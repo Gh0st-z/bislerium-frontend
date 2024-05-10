@@ -10,6 +10,7 @@ import Home from "./bloggers/components/home.js";
 import ForgotPassword from "./bloggers/components/forgot-password.js";
 import ResetPassword from "./bloggers/components/reset-password.js";
 import AddBlog from "./bloggers/components/add-blog.js";
+import UserBlog from "./bloggers/components/user-blogs.js";
 import "./App.css";
 import BloggersPage from "./admin/components/totaluser.js";
 import DashboardHome from "./dashboard/home.jsx";
@@ -30,6 +31,7 @@ function App() {
           <Route path="forgot-password/" element={<ForgotPassword />} />
           <Route path="reset-password/" element={<ResetPassword/>} />
           <Route path="add-blogs/" element={<AddBlog/>} />
+          <Route path="blogs/" element={<UserBlog/>} />
           <Route path="totaluser/" element={<BloggersPage />} />
           <Route path="dashboard/" element={<DashboardHome />} />
           <Route path="dashboard/list" element={<ListBlog />} />
