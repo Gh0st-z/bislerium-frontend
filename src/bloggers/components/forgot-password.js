@@ -36,7 +36,6 @@ function ForgotPassword(){
       axios.post('http://localhost:5234/api/user/forgotpassword', formData).then(response => {
         setMessage(response.data.message);
         showToast('success', response.data.message);
-        navigate('/');
       }).catch(error => {
         console.log(error);
         setMessage('Error occured during login process. Please Try Again!');
