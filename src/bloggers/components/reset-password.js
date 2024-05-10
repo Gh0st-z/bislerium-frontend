@@ -40,7 +40,7 @@ function ResetPassword(){
           showToast('error', 'The passwords do not match!');
       }
       else{
-        axios.post('http://localhost:5234/api/user/resetpassword', formData).then(response => {
+        axios.post('http://localhost:5234/api/user/changepassword', formData).then(response => {
           setMessage(response.data.message);
           showToast('success', response.data.message);
           navigate('/');

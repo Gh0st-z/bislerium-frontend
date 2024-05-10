@@ -33,7 +33,7 @@ function ForgotPassword(){
     if (!formData.Email.trim()) {
       showToast('error', 'Please Fill In All The Fields.');
     }else{
-      axios.post('http://localhost:5234/api/user/resetpassword', formData).then(response => {
+      axios.post('http://localhost:5234/api/user/forgotpassword', formData).then(response => {
         setMessage(response.data.message);
         showToast('success', response.data.message);
         navigate('/');

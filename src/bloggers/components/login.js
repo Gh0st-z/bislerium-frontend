@@ -80,7 +80,7 @@ function Login(){
             <input className="input100" type="password" name="Password" placeholder="Enter your password" onChange={handleInput}/>
             <img src={padlock} className="focus-input100"/>
           </div>
-          <a href="#" className="for-pass">Forgot Password?</a>
+          <Link className="/forgot-password/">Forgot Password?</Link>
           <div className="wrap-input100">
             <button className="login-btn">Login</button>
           </div>
