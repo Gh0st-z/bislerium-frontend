@@ -589,3 +589,7 @@ body{
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out, color 0.3s ease-in-out;
 }
+
+.blg-btn:hover{
+  background-color: #0f4fb8;
+}
