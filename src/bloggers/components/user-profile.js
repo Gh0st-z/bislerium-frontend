@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Cookies from 'js-cookie';
 import '../../assets/css/style.css'
 
-function AdminProfile(){
+function UserProfile(){
 
   const navigate = useNavigate();
 
@@ -162,4 +162,4 @@ function AdminProfile(){
   );
 }
 
-export default AdminProfile;
+export default UserProfile;

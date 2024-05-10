@@ -64,7 +64,9 @@ function Home(){
           </button>
           <button className="user-circle">
             <i className="fas fa-user-circle"></i>
-            <p className="username">{username}</p>
+            <Link to="user-profile/">
+              <p className="username">{username}</p>
+            </Link>
           </button>
         </div>
       </div>

@@ -19,6 +19,8 @@ import "@mantine/core/styles.css";
 import ListBlog from "./dashboard/list-blog.jsx";
 import CreateBlog from "./dashboard/createblog.jsx";
 import Manageusers from "./admin/components/userutils.js";
+import AdminProfile from "./admin/components/adminprofile.js";
+import UserProfile from "./bloggers/components/user-profile.js";
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
           <Route path="dashboard/list" element={<ListBlog />} />
           <Route path="dashboard/create" element={<CreateBlog />} />
           <Route path="manage-users/" element={<Manageusers/>} />
+          <Route path="admin-profile/" element={<AdminProfile/>} />
+          <Route path="user-profile/" element={<UserProfile/>} />
         </Routes>
       </Router>
     </MantineProvider>
