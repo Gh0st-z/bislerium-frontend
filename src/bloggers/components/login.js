@@ -36,10 +36,6 @@ function Login(){
     }else{
       axios.post('http://localhost:5234/api/user/login', formData).then(response => {
         const { jwtToken, userId, role, message } = response.data;
-        if (!jwtToken) {
-          showToast('error', 'JWT Token is missing.');
-          return;
-        }
         setMessage(response.data.message);
         showToast('success', response.data.message);
         Cookies.set('isLoggedIn', 'true', {secure: true, sameSite: 'Strict' });
