@@ -35,9 +35,12 @@ function Login(){
       showToast('error', 'Please Fill In All The Fields.');
     }else{
       axios.post('http://localhost:5234/api/user/login', formData).then(response => {
-        const { jwtToken, userId, role, message } = response.data;
+        const { userId, role, message } = response.data;
+        const jwtToken = response.data.token;
         setMessage(response.data.message);
         showToast('success', response.data.message);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
+        Cookies.set('jwtToken', jwtToken, { secure: true, sameSite: 'Strict' });
         Cookies.set('isLoggedIn', 'true', {secure: true, sameSite: 'Strict' });
         Cookies.set('userID', userId ,{secure: true, sameSite: 'Strict'});
         Cookies.set('jwtToken', jwtToken, {secure:true, sameSite: 'Strict'});

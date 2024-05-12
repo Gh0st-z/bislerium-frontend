@@ -34,8 +34,10 @@ function AddBlog(){
   const userID = Cookies.get('userID');
   useEffect(() => {
     const fetchUsername = async () => {
+      const jwtToken = Cookies.get('jwtToken');
+      axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
       try {
-        const response = await axios.get(`http://localhost:5234/api/manage-user/${userID}`);
+        const response = await axios.get(`http://localhost:5234/api/ManageUser/${userID}`);
         if (response.status !== 200) {
           showToast('error', 'Username fetch unsuccessful');
         } else {
@@ -66,6 +68,8 @@ function AddBlog(){
     else{
       axios.post( 'http://localhost:5234/api/blog/createblog', formData)
       .then(response => {
+          const jwtToken = Cookies.get('jwtToken');
+          axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
           console.log(response.data.message);
           setMessage(response.data.message);
           showToast('success', 'Blog successfully created!');

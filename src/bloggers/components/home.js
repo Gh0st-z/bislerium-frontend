@@ -25,6 +25,8 @@ function Home(){
   useEffect(() => {
     const fetchUsername = async () => {
       try {
+        const jwtToken = Cookies.get('jwtToken');
+        axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
         const response = await axios.get(`http://localhost:5234/api/ManageUser/${userID}`);
         if (response.status !== 200) {
           showToast('error', 'Username fetch unsuccessful');
