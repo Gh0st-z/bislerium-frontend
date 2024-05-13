@@ -37,6 +37,7 @@ function Login(){
       axios.post('http://localhost:5234/api/user/login', formData).then(response => {
         const { userId, role, message } = response.data;
         const jwtToken = response.data.token;
+        const username = response.data.username;
         setMessage(response.data.message);
         showToast('success', response.data.message);
         axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
@@ -44,6 +45,7 @@ function Login(){
         Cookies.set('isLoggedIn', 'true', {secure: true, sameSite: 'Strict' });
         Cookies.set('userID', userId ,{secure: true, sameSite: 'Strict'});
         Cookies.set('jwtToken', jwtToken, {secure:true, sameSite: 'Strict'});
+        Cookies.set('username', username, {secure:true, sameSite: 'Strict'})
         if (role == 'Blogger'){
           navigate('/');
         }

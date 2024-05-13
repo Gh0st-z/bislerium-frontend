@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import {Link, redirect, useNavigate} from 'react-router-dom';
 import {ToastContainer, toast} from 'react-toastify';
 import Cookies from 'js-cookie';
 import companyLogo from '../../assets/images/logo.png';
@@ -9,6 +9,10 @@ import '../../assets/css/style.css'
 
 function Home(){
   const [username, setUsername] = useState('User');
+
+  const navigate = useNavigate();
+
+  const [blogs, setBlogs] = useState([]);
 
   const showToast = (type, message) => {
     toast[type](message, {
@@ -21,31 +25,59 @@ function Home(){
     });
   };
 
-  const userID = Cookies.get('userID');
+  const fetchBlogs = async () => {
+      try {
+        const response = await axios.get('http://localhost:5234/api/blog/allblogs');
+        setBlogs(response.data);
+      } catch (error) {
+        console.error('Failed to fetch blogs: ', error);
+      }
+    };
+
+    useEffect(() => {
+      fetchBlogs();
+    }, []);
+
+  useEffect(() => {
+    const isLoggedIn = Cookies.get('isLoggedIn') === 'true';
+
+    if (isLoggedIn) {
+      toast.success('Logged in Successfully!', {
+        position: 'top-center',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      Cookies.remove('isLoggedIn');
+    }
+  }, []);
+
+  const userName = Cookies.get('username');
   useEffect(() => {
     const fetchUsername = async () => {
       try {
-        const jwtToken = Cookies.get('jwtToken');
-        axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`;
-        const response = await axios.get(`http://localhost:5234/api/ManageUser/${userID}`);
-        if (response.status !== 200) {
-          showToast('error', 'Username fetch unsuccessful');
+        const fetchedUsername = userName;
+        if (!fetchedUsername) {
+          setUsername('User');
         } else {
-          const fetchedUsername = response.data.username;
-          if (!fetchedUsername) {
-            setUsername('User');
-          } else {
-            setUsername(fetchedUsername);
-          }
+          setUsername(fetchedUsername);
         }
       } catch (error) {
         console.error('Problem Fetching Username', error);
         showToast('error', 'Problem Fetching Username');
       }
     };
-
     fetchUsername();
   }, []);
+
+  const logout = () => {
+      Cookies.remove('userToken');
+      Cookies.remove('userId');
+      Cookies.set('isLoggedout', 'true', { expires: 1/24, path: '/' });
+      navigate('/login');
+  };
 
   return(
     <div className="home-main">
@@ -90,6 +122,17 @@ function Home(){
             <h4> Get the latest blogs and blog updates here </h4>
           </div>
           <div className="home-card">
+            {blogs.length > 0 ? (
+              blogs.map((blog) => (
+                <div key={blog.id} className="blog-item">
+                  <h2>Title: {blog.title}</h2>
+                  <p>Description: {blog.description}</p>
+                  <p>{blog.blogImage}</p>
+                </div>
+              ))
+            ) : (
+              <p>No blogs available.</p>
+            )}
           </div>
         </div>
       </div>

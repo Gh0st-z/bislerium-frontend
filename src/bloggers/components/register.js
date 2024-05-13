@@ -57,12 +57,11 @@ function Register(){
         .then(response => {
             console.log(response.data.message);
             setMessage(response.data.message);
-            showToast('success', 'Account successfully created!');
+            showToast('success', response.data.message);
             setFormKey((prevKey) => prevKey + 1);
         }).catch(error =>{
-            console.log(error);
             setMessage('Error occurred during registration.');
-            showToast('error', 'Error occurred during registration.');
+            showToast('error', 'Registration failed please retry!');
         });
       }
     }
